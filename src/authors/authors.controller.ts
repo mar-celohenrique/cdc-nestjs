@@ -9,7 +9,7 @@ export class AuthorsController {
 
   constructor(
     @InjectRepository(Author)
-    private authorsRepository: Repository<Author>,
+    private readonly authorsRepository: Repository<Author>,
   ) {}
 
   @Post()
