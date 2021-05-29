@@ -10,7 +10,8 @@ async function bootstrap() {
     forbidUnknownValues: true,
     disableErrorMessages: false,
     validationError: {
-      value: false,
+      value: true,
+      target: true
     },
     transform: true,
   }));

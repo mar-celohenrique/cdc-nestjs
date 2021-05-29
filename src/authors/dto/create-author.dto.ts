@@ -1,4 +1,5 @@
-import { IsEmail, IsNotEmpty, Length } from "class-validator";
+import { IsEmail, IsNotEmpty, MaxLength } from "class-validator";
+import { UniqueValue } from "src/commons/validations/validations";
 import { Author } from "../entities/author.entity";
 
 export class CreateAuthorDto {
@@ -6,9 +7,10 @@ export class CreateAuthorDto {
     name: string;
     @IsNotEmpty()
     @IsEmail()
+    @UniqueValue({ field: 'email', clazz: Author })
     email: string;
     @IsNotEmpty()
-    @Length(1, 400)
+    @MaxLength(400)
     description: string;
 
     toModel(): Author {
