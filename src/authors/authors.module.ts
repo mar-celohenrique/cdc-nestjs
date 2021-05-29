@@ -6,6 +6,6 @@ import { Author } from './entities/author.entity';
 @Module({
   imports: [TypeOrmModule.forFeature([Author])],
   controllers: [AuthorsController],
-  providers: []
+  providers: [],
 })
 export class AuthorsModule {}

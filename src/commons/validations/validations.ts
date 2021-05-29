@@ -1,13 +1,16 @@
-import { registerDecorator, ValidationOptions } from "class-validator";
-import { UniqueValueRule } from "./rules/unique-value.rule";
+import { registerDecorator, ValidationOptions } from 'class-validator';
+import { UniqueValueRule } from './rules/unique-value.rule';
 
 interface ValidationProperties {
   field: string;
   clazz: any;
 }
 
-export function UniqueValue(properties: ValidationProperties, validationOptions?: ValidationOptions) {
-  return function (object: any, propertyName: string) {
+export function UniqueValue(
+  properties: ValidationProperties,
+  validationOptions?: ValidationOptions,
+) {
+  return function(object: any, propertyName: string) {
     registerDecorator({
       name: 'UniqueValue',
       target: object.constructor,

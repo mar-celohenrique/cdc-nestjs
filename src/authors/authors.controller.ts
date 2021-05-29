@@ -6,10 +6,9 @@ import { Author } from './entities/author.entity';
 
 @Controller('authors')
 export class AuthorsController {
-
   constructor(
     @InjectRepository(Author)
-    private readonly authorsRepository: Repository<Author>
+    private readonly authorsRepository: Repository<Author>,
   ) {}
 
   @Post()
@@ -19,5 +18,4 @@ export class AuthorsController {
     await this.authorsRepository.save(author);
     return author;
   }
-
 }
