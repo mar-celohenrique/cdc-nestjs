@@ -2,7 +2,7 @@ import { ValidationArguments, ValidatorConstraint, ValidatorConstraintInterface 
 import { getConnection } from 'typeorm';
 
 @ValidatorConstraint({ name: 'UniqueValue', async: true })
-export class UniqueValueRule implements ValidatorConstraintInterface {
+export class UniqueValueValidator implements ValidatorConstraintInterface {
     async validate(value: number, args: ValidationArguments) {
         try {
             const [field, clazz] = args.constraints;

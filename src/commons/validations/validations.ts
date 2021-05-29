@@ -1,5 +1,5 @@
 import { registerDecorator, ValidationOptions } from 'class-validator';
-import { UniqueValueRule } from './rules/unique-value.rule';
+import { UniqueValueValidator } from './validators/unique-value.validator';
 
 interface ValidationProperties {
     field: string;
@@ -14,7 +14,7 @@ export function UniqueValue(properties: ValidationProperties, validationOptions?
             propertyName: propertyName,
             constraints: [properties.field, properties.clazz],
             options: validationOptions,
-            validator: UniqueValueRule,
+            validator: UniqueValueValidator,
         });
     };
 }
