@@ -6,16 +6,16 @@ import { Author } from './entities/author.entity';
 
 @Controller('authors')
 export class AuthorsController {
-  constructor(
-    @InjectRepository(Author)
-    private readonly authorsRepository: Repository<Author>,
-  ) {}
+    constructor(
+        @InjectRepository(Author)
+        private readonly authorsRepository: Repository<Author>,
+    ) {}
 
-  @Post()
-  @HttpCode(HttpStatus.OK)
-  async reate(@Body() createAuthorDto: CreateAuthorDto): Promise<Author> {
-    const author: Author = createAuthorDto.toModel();
-    await this.authorsRepository.save(author);
-    return author;
-  }
+    @Post()
+    @HttpCode(HttpStatus.OK)
+    async reate(@Body() createAuthorDto: CreateAuthorDto): Promise<Author> {
+        const author: Author = createAuthorDto.toModel();
+        await this.authorsRepository.save(author);
+        return author;
+    }
 }
