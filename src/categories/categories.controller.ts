@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, HttpCode, HttpStatus } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateCategoryDto } from './dto/create-category.dto';
@@ -12,6 +12,7 @@ export class CategoriesController {
     ) {}
 
     @Post()
+    @HttpCode(HttpStatus.OK)
     async create(@Body() createCategoryDto: CreateCategoryDto): Promise<Category> {
         const category: Category = createCategoryDto.toModel();
         await this.categoryRepository.save(category);
