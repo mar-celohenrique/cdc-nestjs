@@ -1,5 +1,5 @@
 import { IsEmail, IsNotEmpty, MaxLength } from 'class-validator';
-import { UniqueValue } from 'src/commons/validations/validations';
+import { UniqueValue } from '@/commons/validations/validations';
 import { Author } from '../entities/author.entity';
 
 export class CreateAuthorDto {
