@@ -3582,7 +3582,7 @@
         "affectsGlobalScope": false
       },
       "./src/commons/repository/generic-repository.ts": {
-        "version": "faeed1453457e81c02b9c5ff79b65aeb0256303580ad7ab2c6a3ffcbbffd5dc6",
+        "version": "17f38b9ecb7112414513fcfdbaf56dad92d3698ad99ee4adf0b0062b166e40e8",
         "signature": "35bbdd512b2e3bdaf9cc8412ecba8e17c598345f12557981308ccdaf882a85df",
         "affectsGlobalScope": false
       },
@@ -3742,8 +3742,8 @@
         "affectsGlobalScope": false
       },
       "./src/books/books.controller.ts": {
-        "version": "26450aba687407f531b4989f6f599883f6e89cc71ffe9216f4d4f909b4c1967d",
-        "signature": "3c9652452a68116f6c0aea2dba20c16e5d657e5982fbfdaf67b986f77fc41389",
+        "version": "70ba4214b0a826fedaf8a5dd85db592099590acb419637efe463985901513436",
+        "signature": "5b049e5f2dfb63888fcf03e5fe102796b7d615f4da74d380dbc70007c9f94460",
         "affectsGlobalScope": false
       },
       "./src/books/books.module.ts": {

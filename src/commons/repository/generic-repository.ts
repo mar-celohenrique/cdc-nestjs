@@ -12,7 +12,7 @@ export abstract class GenericRepository<T> extends Repository<T> {
         queryDto.limit = queryDto.limit > 10 || !queryDto.limit ? 10 : queryDto.limit;
 
         query.skip((queryDto.page - 1) * queryDto.limit);
-        query.take(+queryDto.limit);
+        query.take(queryDto.limit);
         query.orderBy(queryDto.sort ? JSON.stringify(queryDto.sort) : undefined);
 
         const [result, total] = await query.getManyAndCount();

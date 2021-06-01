@@ -21,7 +21,7 @@ export class BooksController {
     }
 
     @Get()
-    async getAllBooks(@Query() params: BaseQueryParametersDto): Promise<QueryResultDTO<Book>> {
+    async getAll(@Query() params: BaseQueryParametersDto): Promise<QueryResultDTO<Book>> {
         return await this.booksRepository.findAll(params);
     }
 }
