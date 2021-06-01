@@ -3597,8 +3597,13 @@
         "affectsGlobalScope": false
       },
       "./src/books/books.repository.ts": {
-        "version": "13dd68841118f0210714c51e05f95ad8b25b92cdc917566c7c9309686f4b5727",
+        "version": "d7b6e176f54f612079e1d4f3012f91e6c29e1950c89f1c2a0eef96a0a8ace289",
         "signature": "74d02b420bb1bf57c491a442f898356da2ff47c23daeafe843e6c466dbef08a5",
+        "affectsGlobalScope": false
+      },
+      "./src/commons/repository/query-repository.ts": {
+        "version": "9886880addaf1ac56690f1f348d8fc360df90fdab6cda5e745bec05d2c136468",
+        "signature": "c44fa7edb271d58d4e49545120a47728e59a2d9b29cf3d666286a945a6ad71fa",
         "affectsGlobalScope": false
       },
       "./node_modules/class-transformer/types/interfaces/decorator-options/expose-options.interface.d.ts": {
@@ -3737,7 +3742,7 @@
         "affectsGlobalScope": false
       },
       "./src/books/dto/create-book.dto.ts": {
-        "version": "4672dbd47270409056d0ba8999663f2c3fc881f0df2cfe9ce1a26e1760578a97",
+        "version": "c68fd8fa5406506ec56ec41e0b8b70165060eec457245090fa064d9906fea203",
         "signature": "48d1f56c22a54b851c3772910599686c42906d2af42560cd6d303a385bf5c6a7",
         "affectsGlobalScope": false
       },
@@ -7506,10 +7511,10 @@
       "./src/books/dto/create-book.dto.ts": [
         "./node_modules/class-transformer/types/index.d.ts",
         "./node_modules/class-validator/types/index.d.ts",
-        "./node_modules/typeorm/index.d.ts",
         "./src/authors/entities/author.entity.ts",
         "./src/books/entities/book.entity.ts",
         "./src/categories/entities/category.entity.ts",
+        "./src/commons/repository/query-repository.ts",
         "./src/commons/validations/validations.ts"
       ],
       "./src/books/entities/book.entity.ts": [
@@ -7553,6 +7558,9 @@
       ],
       "./src/commons/repository/index.ts": [
         "./src/commons/repository/generic-repository.ts"
+      ],
+      "./src/commons/repository/query-repository.ts": [
+        "./node_modules/typeorm/index.d.ts"
       ],
       "./src/commons/validations/validations.ts": [
         "./node_modules/class-validator/types/index.d.ts",
@@ -11532,8 +11540,6 @@
       "./src/authors/entities/author.entity.ts",
       "./src/books/books.controller.ts",
       "./src/books/books.module.ts",
-      "./src/books/books.repository.ts",
-      "./src/books/dto/create-book.dto.ts",
       "./src/books/entities/book.entity.ts",
       "./src/categories/categories.controller.ts",
       "./src/categories/categories.module.ts",
