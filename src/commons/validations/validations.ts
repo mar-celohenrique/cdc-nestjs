@@ -2,10 +2,10 @@ import { registerDecorator, ValidationOptions } from 'class-validator';
 import { ExistsValueValidator } from './validators/exists-value.validator';
 import { UniqueValueValidator } from './validators/unique-value.validator';
 
-interface ValidationProperties {
+type ValidationProperties = {
     field: string;
     clazz: any;
-}
+};
 
 export function UniqueValue(properties: ValidationProperties, validationOptions?: ValidationOptions) {
     return function(object: any, propertyName: string) {

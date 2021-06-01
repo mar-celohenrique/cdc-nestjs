@@ -8,7 +8,7 @@ async function bootstrap() {
         new ValidationPipe({
             whitelist: false,
             forbidNonWhitelisted: true,
-            forbidUnknownValues: true,
+            forbidUnknownValues: false,
             disableErrorMessages: false,
             validationError: {
                 value: true,
