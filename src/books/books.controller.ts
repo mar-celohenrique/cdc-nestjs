@@ -1,7 +1,8 @@
 import { BaseQueryParametersDto, QueryResultDTO } from '@/commons/dto';
-import { Controller, Post, Body, HttpCode, HttpStatus, Get, Query } from '@nestjs/common';
+import { Controller, Post, Body, HttpCode, HttpStatus, Get, Query, Param, ParseIntPipe, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BooksRepository } from './books.repository';
+import { BookDetails } from './dto/book-details.dto';
 import { CreateBookDto } from './dto/create-book.dto';
 import { Book } from './entities/book.entity';
 
@@ -10,7 +11,7 @@ export class BooksController {
     constructor(
         @InjectRepository(BooksRepository)
         private readonly booksRepository: BooksRepository,
-    ) {}
+    ) { }
 
     @Post()
     @HttpCode(HttpStatus.OK)
@@ -23,5 +24,16 @@ export class BooksController {
     @Get()
     async getAll(@Query() params: BaseQueryParametersDto): Promise<QueryResultDTO<Book>> {
         return await this.booksRepository.findAll(params);
+    }
+
+    @Get(':id')
+    async bookDetails(@Param('id', ParseIntPipe) id: number): Promise<BookDetails> {
+        const book: Book = await this.booksRepository.findOne(id, { relations: ['author'] });
+
+        if (!book) {
+            throw new NotFoundException();
+        }
+
+        return new BookDetails(book);
     }
 }
