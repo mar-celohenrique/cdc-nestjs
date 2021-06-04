@@ -21,7 +21,7 @@ export class ExistsValueValidator implements ValidatorConstraintInterface {
     }
 
     defaultMessage(args: ValidationArguments) {
-        const [field] = args.constraints;
-        return `${field} value must exists on database`;
+        const [field, clazz] = args.constraints;
+        return `${clazz.name} ${field} value must exists on database`;
     }
 }

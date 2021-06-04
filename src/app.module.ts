@@ -6,9 +6,10 @@ import { AuthorsModule } from './authors/authors.module';
 import { CategoriesModule } from './categories/categories.module';
 import { BooksModule } from './books/books.module';
 import { CountriesModule } from './countries/countries.module';
+import { StatesModule } from './states/states.module';
 
 @Module({
-    imports: [TypeOrmModule.forRoot(), AuthorsModule, CategoriesModule, BooksModule, CountriesModule],
+    imports: [TypeOrmModule.forRoot(), AuthorsModule, CategoriesModule, BooksModule, CountriesModule, StatesModule],
     controllers: [AppController],
     providers: [AppService],
 })
