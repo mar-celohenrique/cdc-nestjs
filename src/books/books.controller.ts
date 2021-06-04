@@ -1,5 +1,16 @@
 import { BaseQueryParametersDto, QueryResultDTO } from '@/commons/dto';
-import { Controller, Post, Body, HttpCode, HttpStatus, Get, Query, Param, ParseIntPipe, NotFoundException } from '@nestjs/common';
+import {
+    Controller,
+    Post,
+    Body,
+    HttpCode,
+    HttpStatus,
+    Get,
+    Query,
+    Param,
+    ParseIntPipe,
+    NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BooksRepository } from './books.repository';
 import { BookDetails } from './dto/book-details.dto';
@@ -11,7 +22,7 @@ export class BooksController {
     constructor(
         @InjectRepository(BooksRepository)
         private readonly booksRepository: BooksRepository,
-    ) { }
+    ) {}
 
     @Post()
     @HttpCode(HttpStatus.OK)
