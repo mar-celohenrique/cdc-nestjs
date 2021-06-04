@@ -4,6 +4,10 @@ import { getConnection } from 'typeorm';
 @ValidatorConstraint({ name: 'ExistsValue', async: true })
 export class ExistsValueValidator implements ValidatorConstraintInterface {
     async validate(value: number, args: ValidationArguments) {
+        if (!value) {
+            return true;
+        }
+
         try {
             const [field, clazz] = args.constraints;
 

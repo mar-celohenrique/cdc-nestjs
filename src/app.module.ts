@@ -7,9 +7,18 @@ import { CategoriesModule } from './categories/categories.module';
 import { BooksModule } from './books/books.module';
 import { CountriesModule } from './countries/countries.module';
 import { StatesModule } from './states/states.module';
+import { PurchasesModule } from './purchases/purchases.module';
 
 @Module({
-    imports: [TypeOrmModule.forRoot(), AuthorsModule, CategoriesModule, BooksModule, CountriesModule, StatesModule],
+    imports: [
+        TypeOrmModule.forRoot(),
+        AuthorsModule,
+        CategoriesModule,
+        BooksModule,
+        CountriesModule,
+        StatesModule,
+        PurchasesModule,
+    ],
     controllers: [AppController],
     providers: [AppService],
 })

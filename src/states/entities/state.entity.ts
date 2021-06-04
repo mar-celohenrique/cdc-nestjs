@@ -16,4 +16,8 @@ export class State {
         this.name = name;
         this.country = country;
     }
+
+    belongsToCountry(country: Country): boolean {
+        return JSON.stringify(this.country) === JSON.stringify(country) ;
+    }
 }
