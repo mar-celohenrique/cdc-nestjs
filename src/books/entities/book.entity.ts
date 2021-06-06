@@ -32,26 +32,4 @@ export class Book {
 
     @ManyToOne(() => Author)
     author: Author;
-
-    constructor(
-        title: string,
-        synopsis: string,
-        summary: string,
-        price: number,
-        pages: number,
-        isbn: string,
-        publicationDate: Date,
-        category: Category,
-        author: Author,
-    ) {
-        this.title = title;
-        this.synopsis = synopsis;
-        this.summary = summary;
-        this.price = price;
-        this.pages = pages;
-        this.isbn = isbn;
-        this.publicationDate = publicationDate;
-        this.category = category;
-        this.author = author;
-    }
 }

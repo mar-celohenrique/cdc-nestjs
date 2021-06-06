@@ -1,8 +1,8 @@
 {
   "name": "cdc-nestjs",
   "version": "0.0.1",
-  "description": "",
-  "author": "",
+  "description": "API em NestJS da Casa do Código",
+  "author": "Marcelo Pereira",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {

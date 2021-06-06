@@ -7,8 +7,4 @@ export class Category {
 
     @Column({ nullable: false, unique: true })
     name: string;
-
-    constructor(name: string) {
-        this.name = name;
-    }
 }

@@ -5,6 +5,7 @@ import { ExistsValue, UniqueValue } from '@/commons/validations/validations';
 import { Type } from 'class-transformer';
 import { IsDate, IsInt, IsNotEmpty, MaxLength, Min, MinDate } from 'class-validator';
 import { Book } from '../entities/book.entity';
+import { getRepository } from 'typeorm';
 
 export class CreateBookDto {
     @IsNotEmpty()
@@ -49,16 +50,10 @@ export class CreateBookDto {
 
         const author: Author = await findById(Author, this.authorId);
 
-        return new Book(
-            this.title,
-            this.synopsis,
-            this.summary,
-            this.price,
-            this.pages,
-            this.isbn,
-            this.publicationDate,
-            category,
-            author,
-        );
+        const book: Book = getRepository(Book).create(this);
+        book.category = category;
+        book.author = author;
+
+        return book;
     }
 }

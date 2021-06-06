@@ -14,7 +14,7 @@ export class CategoriesController {
     @Post()
     @HttpCode(HttpStatus.OK)
     async create(@Body() createCategoryDto: CreateCategoryDto): Promise<Category> {
-        const category: Category = createCategoryDto.toModel();
+        const category: Category = this.categoryRepository.create(createCategoryDto);
         await this.categoryRepository.save(category);
         return category;
     }

@@ -14,7 +14,7 @@ export class AuthorsController {
     @Post()
     @HttpCode(HttpStatus.OK)
     async reate(@Body() createAuthorDto: CreateAuthorDto): Promise<Author> {
-        const author: Author = createAuthorDto.toModel();
+        const author: Author = this.authorsRepository.create(createAuthorDto);
         await this.authorsRepository.save(author);
         return author;
     }

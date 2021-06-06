@@ -12,8 +12,4 @@ export class CreateAuthorDto {
     @IsNotEmpty()
     @MaxLength(400)
     description: string;
-
-    toModel(): Author {
-        return new Author(this.name, this.email, this.description);
-    }
 }

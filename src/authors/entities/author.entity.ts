@@ -16,10 +16,4 @@ export class Author {
 
     @CreateDateColumn({ nullable: false })
     creationDate: Date;
-
-    constructor(name: string, email: string, description: string) {
-        this.name = name;
-        this.email = email;
-        this.description = description;
-    }
 }

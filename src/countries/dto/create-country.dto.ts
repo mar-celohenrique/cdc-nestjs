@@ -6,8 +6,4 @@ export class CreateCountryDto {
     @IsNotEmpty()
     @UniqueValue({ field: 'name', clazz: Country })
     name: string;
-
-    toModel(): Country {
-        return new Country(this.name);
-    }
 }

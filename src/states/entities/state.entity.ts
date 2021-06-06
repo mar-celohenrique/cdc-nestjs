@@ -12,12 +12,7 @@ export class State {
     @ManyToOne(() => Country)
     country: Country;
 
-    constructor(name: string, country: Country) {
-        this.name = name;
-        this.country = country;
-    }
-
     belongsToCountry(country: Country): boolean {
-        return JSON.stringify(this.country) === JSON.stringify(country) ;
+        return JSON.stringify(this.country) === JSON.stringify(country);
     }
 }

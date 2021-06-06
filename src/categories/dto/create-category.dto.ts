@@ -5,8 +5,4 @@ export class CreateCategoryDto {
     @IsNotEmpty()
     @UniqueValue({ field: 'name', clazz: Category })
     name: string;
-
-    toModel(): Category {
-        return new Category(this.name);
-    }
 }

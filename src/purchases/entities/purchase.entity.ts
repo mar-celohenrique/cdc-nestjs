@@ -1,6 +1,7 @@
 import { Country } from '@/countries/entities/country.entity';
 import { State } from '@/states/entities/state.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Order } from './order.entity';
 
 @Entity()
 export class Purchase {
@@ -40,27 +41,7 @@ export class Purchase {
     @ManyToOne(() => State)
     state: State;
 
-    constructor(
-        email: string,
-        name: string,
-        lastName: string,
-        document: string,
-        address: string,
-        complement: string,
-        city: string,
-        phone: string,
-        zipCode: string,
-        country: Country,
-    ) {
-        this.email = email;
-        this.name = name;
-        this.lastName = lastName;
-        this.document = document;
-        this.address = address;
-        this.complement = complement;
-        this.city = city;
-        this.phone = phone;
-        this.zipCode = zipCode;
-        this.country = country;
-    }
+    @OneToOne(() => Order)
+    @JoinColumn()
+    order: Order;
 }

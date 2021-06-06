@@ -13,7 +13,7 @@ export class CountriesController {
 
     @Post()
     async create(@Body() createCountryDto: CreateCountryDto): Promise<Country> {
-        const country: Country = createCountryDto.toModel();
+        const country: Country = this.countriesRepository.create(createCountryDto);
         await this.countriesRepository.save(country);
         return country;
     }
