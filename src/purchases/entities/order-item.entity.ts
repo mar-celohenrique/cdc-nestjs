@@ -14,7 +14,7 @@ export class OrderItem {
     @ManyToOne(
         () => Order,
         order => order.items,
-        { cascade: false },
+        { nullable: false, cascade: false },
     )
     @JoinColumn([{ name: 'order_id', referencedColumnName: 'id' }])
     @Exclude()
@@ -23,7 +23,10 @@ export class OrderItem {
     @Column()
     quantity: number;
 
-    getTotal(): number {
+    @Column({ name: 'book_price' })
+    bookPrice: number;
+
+    public getTotal(): number {
         return Number(this.quantity.toFixed(2)) * Number(this.book.price.toFixed(2));
     }
 }

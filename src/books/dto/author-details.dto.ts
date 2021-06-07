@@ -1,6 +1,6 @@
 import { Author } from '@/authors/entities/author.entity';
 
-export class AuthorDetails {
+export class AuthorDetailsDto {
     name: string;
     description: string;
 

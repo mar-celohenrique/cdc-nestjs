@@ -9,8 +9,9 @@ import { StateBelongsCountryValidator } from '@/commons/validations/validators/s
 import { CreatePurchaseOrder } from '../types/create-purchase-order';
 import { CreateOrderDto } from '@/purchases/dto/create-order.dto';
 import { Type } from 'class-transformer';
-import { Repository } from 'typeorm';
+import { Repository, getConnection } from 'typeorm';
 import { Coupon } from '@/coupons/entities/coupon.entity';
+import { CouponValidator } from '@/commons/validations/validators/coupon.validator';
 
 export class CreatePurchaseDto {
     @IsNotEmpty()
@@ -56,6 +57,7 @@ export class CreatePurchaseDto {
     order: CreateOrderDto;
 
     @ExistsValue({ field: 'code', clazz: Coupon })
+    @Validate(CouponValidator)
     couponCode: string;
 
     public async toModel(purchasesRepository: Repository<Purchase>): Promise<Purchase> {
@@ -69,6 +71,14 @@ export class CreatePurchaseDto {
 
         if (this.stateId) {
             purchase.state = await findById(State, this.stateId);
+        }
+
+        if (this.couponCode) {
+            const coupon: Coupon = await getConnection()
+                .getRepository(Coupon)
+                .findOneOrFail({ where: { code: this.couponCode } });
+
+            purchase.applyCoupon(coupon);
         }
 
         return purchase;

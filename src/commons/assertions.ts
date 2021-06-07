@@ -8,7 +8,13 @@ export class Assert {
     }
 
     static notNull(object: any, message?: string): void {
-        if (object == '' || object == null) {
+        if (!object) {
+            Assert.throwException(message);
+        }
+    }
+
+    static isNull(object: any, message?: string): void {
+        if (object) {
             Assert.throwException(message);
         }
     }

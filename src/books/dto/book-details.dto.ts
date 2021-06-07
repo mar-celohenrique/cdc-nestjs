@@ -1,7 +1,7 @@
 import { Book } from '../entities/book.entity';
-import { AuthorDetails } from './author-details.dto';
+import { AuthorDetailsDto } from './author-details.dto';
 
-export class BookDetails {
+export class BookDetailsDto {
     title: string;
     isbn: string;
     pages: number;
@@ -9,7 +9,7 @@ export class BookDetails {
     synopsis: string;
     summary: string;
     publicationDate: Date;
-    author: AuthorDetails;
+    author: AuthorDetailsDto;
 
     constructor(book: Book) {
         this.title = book.title;
@@ -19,6 +19,6 @@ export class BookDetails {
         this.synopsis = book.synopsis;
         this.summary = book.summary;
         this.publicationDate = book.publicationDate;
-        this.author = new AuthorDetails(book.author);
+        this.author = new AuthorDetailsDto(book.author);
     }
 }

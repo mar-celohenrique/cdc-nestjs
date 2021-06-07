@@ -1,5 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
-import { Purchase } from '@/purchases/entities/purchase.entity';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
 export class Coupon {
@@ -15,9 +14,7 @@ export class Coupon {
     @Column({ name: 'expiration_date' })
     expirationDate: Date;
 
-    @OneToMany(
-        () => Purchase,
-        purchase => purchase.coupon,
-    )
-    purchases: Purchase[];
+    public isValid(): boolean {
+        return this.expirationDate.getTime() > new Date().getTime();
+    }
 }

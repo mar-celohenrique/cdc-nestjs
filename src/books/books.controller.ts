@@ -13,7 +13,7 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BooksRepository } from './books.repository';
-import { BookDetails } from './dto/book-details.dto';
+import { BookDetailsDto } from './dto/book-details.dto';
 import { CreateBookDto } from './dto/create-book.dto';
 import { Book } from './entities/book.entity';
 
@@ -38,13 +38,13 @@ export class BooksController {
     }
 
     @Get(':id')
-    async bookDetails(@Param('id', ParseIntPipe) id: number): Promise<BookDetails> {
+    async bookDetails(@Param('id', ParseIntPipe) id: number): Promise<BookDetailsDto> {
         const book: Book = await this.booksRepository.findOne(id, { relations: ['author'] });
 
         if (!book) {
             throw new NotFoundException();
         }
 
-        return new BookDetails(book);
+        return new BookDetailsDto(book);
     }
 }

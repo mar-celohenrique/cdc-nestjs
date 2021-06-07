@@ -3,13 +3,13 @@ import { Entity, OneToOne, PrimaryGeneratedColumn, OneToMany, JoinColumn } from 
 import { OrderItem } from './order-item.entity';
 import { Exclude } from 'class-transformer';
 
-@Entity()
+@Entity('orders')
 export class Order {
     @PrimaryGeneratedColumn()
     id: number;
 
     @OneToOne(() => Purchase, { nullable: false, cascade: false })
-    @JoinColumn([{ name: 'purchase_id', referencedColumnName: 'id' }])
+    @JoinColumn({ name: 'purchase_id', referencedColumnName: 'id' })
     @Exclude()
     purchase: Purchase;
 
@@ -20,11 +20,11 @@ export class Order {
     )
     items: OrderItem[];
 
-    totalEqualsTo(total: number): boolean {
+    public totalEqualsTo(total: number): boolean {
         return JSON.stringify(Number(total.toFixed(2))) === JSON.stringify(this.getTotal());
     }
 
-    getTotal(): number {
+    public getTotal(): number {
         return this.items
             .map(item => item.getTotal())
             .reduce((previous, actual) => Number(previous.toFixed(2)) + Number(actual.toFixed(2)));

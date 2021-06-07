@@ -20,6 +20,7 @@ export class CreateOrderItemDto {
         const orderItem = new OrderItem();
         orderItem.book = book;
         orderItem.quantity = this.quantity;
+        orderItem.bookPrice = book.price;
         return orderItem;
     }
 }
