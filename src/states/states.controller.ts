@@ -13,7 +13,7 @@ export class StatesController {
 
     @Post()
     async create(@Body() createStateDto: CreateStateDto): Promise<State> {
-        const state: State = await createStateDto.toModel();
+        const state: State = await createStateDto.toModel(this.statesRepository);
         this.statesRepository.save(state);
         return state;
     }

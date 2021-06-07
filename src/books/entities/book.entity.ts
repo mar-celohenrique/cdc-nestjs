@@ -27,9 +27,9 @@ export class Book {
     @Column({ nullable: false })
     publicationDate: Date;
 
-    @ManyToOne(() => Category)
+    @ManyToOne(() => Category, { nullable: false })
     category: Category;
 
-    @ManyToOne(() => Author)
+    @ManyToOne(() => Author, { nullable: false })
     author: Author;
 }

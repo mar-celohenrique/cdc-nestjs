@@ -15,7 +15,7 @@ export class CreateOrderItemDto {
     @IsPositive()
     quantity: number;
 
-    async toModel(): Promise<OrderItem> {
+    public async toModel(): Promise<OrderItem> {
         const book: Book = await findById(Book, this.bookId);
         const orderItem = new OrderItem();
         orderItem.book = book;

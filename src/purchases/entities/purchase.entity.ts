@@ -35,13 +35,13 @@ export class Purchase {
     @Column({ nullable: false })
     zipCode: string;
 
-    @ManyToOne(() => Country)
+    @ManyToOne(() => Country, { nullable: false })
     country: Country;
 
-    @ManyToOne(() => State)
+    @ManyToOne(() => State, { nullable: false })
     state: State;
 
-    @OneToOne(() => Order)
+    @OneToOne(() => Order, { nullable: false })
     @JoinColumn()
     order: Order;
 }

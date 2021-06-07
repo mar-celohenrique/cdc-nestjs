@@ -5,6 +5,7 @@ import { CreateOrderItemDto } from './create-order-item.dto';
 import { ArrayMinSize, IsInt, IsNotEmpty, IsPositive, ValidateNested, IsArray } from 'class-validator';
 import { OrderItem } from '../entities/order-item.entity';
 import { Type } from 'class-transformer';
+import { Assert } from '@/commons/assertions';
 
 export class CreateOrderDto {
     @IsNotEmpty()
@@ -19,13 +20,17 @@ export class CreateOrderDto {
     @Type(() => CreateOrderItemDto)
     items: CreateOrderItemDto[];
 
-    async toModel(): Promise<CreatePurchaseOrder> {
+    public async toModel(): Promise<CreatePurchaseOrder> {
         const orderItems: OrderItem[] = await Promise.all(this.items.map(item => item.toModel()));
 
         return (purchase: Purchase) => {
             const order = new Order();
             order.purchase = purchase;
-            order.items = new Set(orderItems);
+            order.items = orderItems;
+            Assert.isTrue(
+                order.totalEqualsTo(this.total),
+                'The total that was sent does not match with the real total',
+            );
             return order;
         };
     }

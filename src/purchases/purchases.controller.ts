@@ -23,7 +23,7 @@ export class PurchasesController {
     @Post()
     @HttpCode(HttpStatus.OK)
     async create(@Body() createPurchaseDto: CreatePurchaseDto): Promise<Purchase> {
-        const purchase: Purchase = await createPurchaseDto.toModel();
+        const purchase: Purchase = await createPurchaseDto.toModel(this.purchasesRepository);
         return purchase;
     }
 }

@@ -5,7 +5,7 @@ import { ExistsValue, UniqueValue } from '@/commons/validations/validations';
 import { Type } from 'class-transformer';
 import { IsDate, IsInt, IsNotEmpty, MaxLength, Min, MinDate } from 'class-validator';
 import { Book } from '../entities/book.entity';
-import { getRepository } from 'typeorm';
+import { BooksRepository } from '../books.repository';
 
 export class CreateBookDto {
     @IsNotEmpty()
@@ -45,12 +45,12 @@ export class CreateBookDto {
     @ExistsValue({ field: 'id', clazz: Author })
     authorId: number;
 
-    async toModel(): Promise<Book> {
+    public async toModel(booksRepository: BooksRepository): Promise<Book> {
         const category: Category = await findById(Category, this.categoryId);
 
         const author: Author = await findById(Author, this.authorId);
 
-        const book: Book = getRepository(Book).create(this);
+        const book: Book = booksRepository.create(this);
         book.category = category;
         book.author = author;
 

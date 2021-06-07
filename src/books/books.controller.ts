@@ -27,7 +27,7 @@ export class BooksController {
     @Post()
     @HttpCode(HttpStatus.OK)
     async create(@Body() createBookDto: CreateBookDto): Promise<Book> {
-        const book: Book = await createBookDto.toModel();
+        const book: Book = await createBookDto.toModel(this.booksRepository);
         await this.booksRepository.save(book);
         return book;
     }

@@ -8,10 +8,20 @@ export class Order {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @OneToOne(() => Purchase)
+    @OneToOne(() => Purchase, { nullable: false })
     @Exclude()
     purchase: Purchase;
 
     @Column(() => OrderItem)
-    items: Set<OrderItem>;
+    items: OrderItem[];
+
+    totalEqualsTo(total: number): boolean {
+        return JSON.stringify(total) === JSON.stringify(this.getTotal());
+    }
+
+    getTotal(): number {
+        return this.items
+            .map(item => item.getTotal())
+            .reduce((previous, actual) => Number(previous.toFixed(2)) + Number(actual.toFixed(2)));
+    }
 }

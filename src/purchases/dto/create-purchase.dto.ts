@@ -8,8 +8,8 @@ import { findById } from '@/commons/repository/query-repository';
 import { StateBelongsCountryValidator } from '@/commons/validations/validators/state-belongs-country.validator';
 import { CreatePurchaseOrder } from '../types/create-purchase-order';
 import { CreateOrderDto } from '@/purchases/dto/create-order.dto';
-import { getRepository } from 'typeorm';
 import { Type } from 'class-transformer';
+import { Repository } from 'typeorm';
 
 export class CreatePurchaseDto {
     @IsNotEmpty()
@@ -54,12 +54,12 @@ export class CreatePurchaseDto {
     @Type(() => CreateOrderDto)
     order: CreateOrderDto;
 
-    async toModel(): Promise<Purchase> {
+    public async toModel(purchasesRepository: Repository<Purchase>): Promise<Purchase> {
         const country: Country = await findById(Country, this.countryId);
 
         const createOrder: CreatePurchaseOrder = await this.order.toModel();
 
-        const purchase: Purchase = getRepository(Purchase).create(this);
+        const purchase: Purchase = purchasesRepository.create(this);
         purchase.order = createOrder(purchase);
         purchase.country = country;
 

@@ -9,7 +9,7 @@ export class State {
     @Column({ nullable: false, unique: true })
     name: string;
 
-    @ManyToOne(() => Country)
+    @ManyToOne(() => Country, { nullable: false })
     country: Country;
 
     belongsToCountry(country: Country): boolean {
