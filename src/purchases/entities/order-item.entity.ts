@@ -1,6 +1,7 @@
 import { Book } from '@/books/entities/book.entity';
 import { Column, ManyToOne, JoinColumn, Entity, PrimaryColumn } from 'typeorm';
 import { Order } from './order.entity';
+import { Exclude } from 'class-transformer';
 
 @Entity('order_items')
 export class OrderItem {
@@ -16,6 +17,7 @@ export class OrderItem {
         { cascade: false },
     )
     @JoinColumn([{ name: 'order_id', referencedColumnName: 'id' }])
+    @Exclude()
     order: Order;
 
     @Column()

@@ -10,6 +10,7 @@ import { CreatePurchaseOrder } from '../types/create-purchase-order';
 import { CreateOrderDto } from '@/purchases/dto/create-order.dto';
 import { Type } from 'class-transformer';
 import { Repository } from 'typeorm';
+import { Coupon } from '@/coupons/entities/coupon.entity';
 
 export class CreatePurchaseDto {
     @IsNotEmpty()
@@ -53,6 +54,9 @@ export class CreatePurchaseDto {
     @ValidateNested()
     @Type(() => CreateOrderDto)
     order: CreateOrderDto;
+
+    @ExistsValue({ field: 'code', clazz: Coupon })
+    couponCode: string;
 
     public async toModel(purchasesRepository: Repository<Purchase>): Promise<Purchase> {
         const country: Country = await findById(Country, this.countryId);

@@ -8,6 +8,7 @@ import { BooksModule } from './books/books.module';
 import { CountriesModule } from './countries/countries.module';
 import { StatesModule } from './states/states.module';
 import { PurchasesModule } from './purchases/purchases.module';
+import { CouponsModule } from './coupons/coupons.module';
 
 @Module({
     imports: [
@@ -18,6 +19,7 @@ import { PurchasesModule } from './purchases/purchases.module';
         CountriesModule,
         StatesModule,
         PurchasesModule,
+        CouponsModule,
     ],
     controllers: [AppController],
     providers: [AppService],

@@ -2,6 +2,7 @@ import { Country } from '@/countries/entities/country.entity';
 import { State } from '@/states/entities/state.entity';
 import { Column, Entity, ManyToOne, OneToOne, PrimaryGeneratedColumn, JoinColumn } from 'typeorm';
 import { Order } from './order.entity';
+import { Coupon } from '@/coupons/entities/coupon.entity';
 
 @Entity()
 export class Purchase {
@@ -45,4 +46,11 @@ export class Purchase {
 
     @OneToOne(() => Order, { nullable: false, cascade: true })
     order: Order;
+
+    @ManyToOne(
+        () => Coupon,
+        coupon => coupon.purchases,
+    )
+    @JoinColumn([{ name: 'coupon_id', referencedColumnName: 'id' }])
+    coupon: Coupon;
 }
