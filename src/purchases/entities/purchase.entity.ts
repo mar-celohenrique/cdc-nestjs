@@ -1,6 +1,6 @@
 import { Country } from '@/countries/entities/country.entity';
 import { State } from '@/states/entities/state.entity';
-import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, OneToOne, PrimaryGeneratedColumn, JoinColumn } from 'typeorm';
 import { Order } from './order.entity';
 
 @Entity()
@@ -35,13 +35,14 @@ export class Purchase {
     @Column({ nullable: false })
     zipCode: string;
 
-    @ManyToOne(() => Country, { nullable: false })
+    @ManyToOne(() => Country, { nullable: false, cascade: false })
+    @JoinColumn([{ name: 'country_id', referencedColumnName: 'id' }])
     country: Country;
 
-    @ManyToOne(() => State, { nullable: false })
+    @ManyToOne(() => State, { nullable: false, cascade: false })
+    @JoinColumn([{ name: 'state_id', referencedColumnName: 'id' }])
     state: State;
 
-    @OneToOne(() => Order, { nullable: false })
-    @JoinColumn()
+    @OneToOne(() => Order, { nullable: false, cascade: true })
     order: Order;
 }

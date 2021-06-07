@@ -1,5 +1,5 @@
 import { Purchase } from '@/purchases/entities/purchase.entity';
-import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, OneToOne, PrimaryGeneratedColumn, OneToMany, JoinColumn } from 'typeorm';
 import { OrderItem } from './order-item.entity';
 import { Exclude } from 'class-transformer';
 
@@ -8,15 +8,20 @@ export class Order {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @OneToOne(() => Purchase, { nullable: false })
+    @OneToOne(() => Purchase, { nullable: false, cascade: false })
+    @JoinColumn([{ name: 'purchase_id', referencedColumnName: 'id' }])
     @Exclude()
     purchase: Purchase;
 
-    @Column(() => OrderItem)
+    @OneToMany(
+        () => OrderItem,
+        orderItem => orderItem.order,
+        { cascade: true },
+    )
     items: OrderItem[];
 
     totalEqualsTo(total: number): boolean {
-        return JSON.stringify(total) === JSON.stringify(this.getTotal());
+        return JSON.stringify(Number(total.toFixed(2))) === JSON.stringify(this.getTotal());
     }
 
     getTotal(): number {
