@@ -15,7 +15,7 @@ export class CreateStateDto {
     @ExistsValue({ field: 'id', clazz: Country })
     countryId: number;
 
-    public async toModel(statesRepository: Repository<State>): Promise<State> {
+    async toModel(statesRepository: Repository<State>): Promise<State> {
         const country: Country = await findById(Country, this.countryId);
         const state: State = statesRepository.create(this);
         state.country = country;

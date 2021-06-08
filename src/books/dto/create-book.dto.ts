@@ -45,7 +45,7 @@ export class CreateBookDto {
     @ExistsValue({ field: 'id', clazz: Author })
     authorId: number;
 
-    public async toModel(booksRepository: BooksRepository): Promise<Book> {
+    async toModel(booksRepository: BooksRepository): Promise<Book> {
         const category: Category = await findById(Category, this.categoryId);
 
         const author: Author = await findById(Author, this.authorId);

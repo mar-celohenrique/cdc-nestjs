@@ -20,13 +20,13 @@ export class OrderItem {
     @Exclude()
     order: Order;
 
-    @Column()
+    @Column({ name: 'quantity', nullable: false })
     quantity: number;
 
-    @Column({ name: 'book_price' })
+    @Column({ name: 'book_price', nullable: false })
     bookPrice: number;
 
-    public getTotal(): number {
+    getTotal(): number {
         return Number(this.quantity.toFixed(2)) * Number(this.book.price.toFixed(2));
     }
 }

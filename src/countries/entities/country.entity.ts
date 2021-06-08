@@ -1,10 +1,10 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
+@Entity('country')
 export class Country {
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn({ name: 'id' })
     id: number;
 
-    @Column({ nullable: false, unique: true })
+    @Column({ name: 'name', nullable: false, unique: true })
     name: string;
 }

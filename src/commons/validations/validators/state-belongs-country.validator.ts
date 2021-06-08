@@ -23,6 +23,7 @@ export class StateBelongsCountryValidator implements ValidatorConstraintInterfac
     }
 
     defaultMessage(args: ValidationArguments) {
-        return `The state [${args.value}] does not belong to the country`;
+        const purchaseDTO: CreatePurchaseDto = args.object as CreatePurchaseDto;
+        return `The state [${purchaseDTO.stateId}] does not belong to the country [${purchaseDTO.countryId}]`;
     }
 }

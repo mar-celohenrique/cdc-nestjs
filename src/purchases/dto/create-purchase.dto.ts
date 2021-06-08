@@ -60,7 +60,7 @@ export class CreatePurchaseDto {
     @Validate(CouponValidator)
     couponCode: string;
 
-    public async toModel(purchasesRepository: Repository<Purchase>): Promise<Purchase> {
+    async toModel(purchasesRepository: Repository<Purchase>): Promise<Purchase> {
         const country: Country = await findById(Country, this.countryId);
 
         const createOrder: CreatePurchaseOrder = await this.order.toModel();

@@ -5,7 +5,7 @@ import { Exclude } from 'class-transformer';
 
 @Entity('orders')
 export class Order {
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn({ name: 'id' })
     id: number;
 
     @OneToOne(() => Purchase, { nullable: false, cascade: false })
@@ -20,11 +20,11 @@ export class Order {
     )
     items: OrderItem[];
 
-    public totalEqualsTo(total: number): boolean {
+    totalEqualsTo(total: number): boolean {
         return JSON.stringify(Number(total.toFixed(2))) === JSON.stringify(this.getTotal());
     }
 
-    public getTotal(): number {
+    getTotal(): number {
         return this.items
             .map(item => item.getTotal())
             .reduce((previous, actual) => Number(previous.toFixed(2)) + Number(actual.toFixed(2)));

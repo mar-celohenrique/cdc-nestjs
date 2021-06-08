@@ -1,19 +1,19 @@
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
+@Entity('author')
 export class Author {
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn({ name: 'id' })
     id: number;
 
-    @Column({ nullable: false })
+    @Column({ name: 'name', nullable: false })
     name: string;
 
-    @Column({ nullable: false, unique: true })
+    @Column({ name: 'email', nullable: false, unique: true })
     email: string;
 
-    @Column({ nullable: false })
+    @Column({ name: 'description', nullable: false })
     description: string;
 
-    @CreateDateColumn({ nullable: false })
+    @CreateDateColumn({ name: 'creation_date', nullable: false })
     creationDate: Date;
 }

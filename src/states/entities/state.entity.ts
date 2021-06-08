@@ -1,15 +1,16 @@
 import { Country } from '@/countries/entities/country.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn, JoinColumn } from 'typeorm';
 
-@Entity()
+@Entity('state')
 export class State {
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn({ name: 'id' })
     id: number;
 
-    @Column({ nullable: false, unique: true })
+    @Column({ name: 'name', nullable: false, unique: true })
     name: string;
 
     @ManyToOne(() => Country, { nullable: false })
+    @JoinColumn({ name: 'country_id', referencedColumnName: 'id' })
     country: Country;
 
     belongsToCountry(country: Country): boolean {

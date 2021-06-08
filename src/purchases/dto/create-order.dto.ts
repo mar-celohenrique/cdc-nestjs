@@ -20,7 +20,7 @@ export class CreateOrderDto {
     @Type(() => CreateOrderItemDto)
     items: CreateOrderItemDto[];
 
-    public async toModel(): Promise<CreatePurchaseOrder> {
+    async toModel(): Promise<CreatePurchaseOrder> {
         const orderItems: OrderItem[] = await Promise.all(this.items.map(item => item.toModel()));
 
         return (purchase: Purchase) => {

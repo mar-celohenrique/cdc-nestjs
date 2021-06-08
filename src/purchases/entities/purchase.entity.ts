@@ -5,44 +5,42 @@ import { Order } from './order.entity';
 import { Coupon } from '@/coupons/entities/coupon.entity';
 import { Assert } from '@/commons/assertions';
 
-@Entity()
+@Entity('purchase')
 export class Purchase {
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn({ name: 'id' })
     id: number;
 
-    @Column({ nullable: false })
+    @Column({ name: 'email', nullable: false })
     email: string;
 
-    @Column({ nullable: false })
+    @Column({ name: 'name', nullable: false })
     name: string;
 
-    @Column({ nullable: false })
+    @Column({ name: 'last_name', nullable: false })
     lastName: string;
 
-    @Column({ nullable: false })
+    @Column({ name: 'document', nullable: false })
     document: string;
 
-    @Column({ nullable: false })
+    @Column({ name: 'address', nullable: false })
     address: string;
 
-    @Column({ nullable: false })
+    @Column({ name: 'complement', nullable: false })
     complement: string;
 
-    @Column({ nullable: false })
+    @Column({ name: 'city', nullable: false })
     city: string;
 
-    @Column({ nullable: false })
+    @Column({ name: 'phone', nullable: false })
     phone: string;
 
-    @Column({ nullable: false })
+    @Column({ name: 'zip_code', nullable: false })
     zipCode: string;
 
-    @Column({
-        nullable: true,
-    })
+    @Column({ name: 'discount', nullable: true })
     discount: number;
 
-    @Column({ nullable: true })
+    @Column({ name: 'expiration_date', nullable: true })
     expirationDate: Date;
 
     @ManyToOne(() => Country, { nullable: false, cascade: false })
@@ -60,7 +58,7 @@ export class Purchase {
     @JoinColumn([{ name: 'coupon_id', referencedColumnName: 'id' }])
     coupon: Coupon;
 
-    public applyCoupon(couponToApply: Coupon): void {
+    applyCoupon(couponToApply: Coupon): void {
         Assert.notNull(couponToApply, 'The coupon must not be null');
         Assert.isTrue(couponToApply.isValid(), 'The coupon is not valid');
         Assert.isNull(this.coupon, 'Is not possible to change a coupon from a Purchase');
@@ -72,7 +70,7 @@ export class Purchase {
         this.discount = couponToApply.discount;
     }
 
-    public getAddressFormatted(): string {
+    getAddressFormatted(): string {
         return `${this.address} ${this.complement}, ${this.city} - ${this.zipCode}, ${this.country.name}. ${this.phone}`;
     }
 }

@@ -1,35 +1,38 @@
 import { Author } from '@/authors/entities/author.entity';
 import { Category } from '@/categories/entities/category.entity';
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn, JoinColumn } from 'typeorm';
 
-@Entity()
+@Entity('book')
 export class Book {
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn({ name: 'id' })
     id: number;
 
-    @Column({ nullable: false })
+    @Column({ name: 'title', nullable: false })
     title: string;
 
-    @Column({ nullable: false, length: 500 })
+    @Column({ name: 'synopsis', nullable: false, length: 500 })
     synopsis: string;
 
+    @Column({ name: 'summary', nullable: true })
     summary: string;
 
-    @Column({ nullable: false })
+    @Column({ name: 'price', nullable: false })
     price: number;
 
-    @Column({ nullable: false })
+    @Column({ name: 'pages', nullable: false })
     pages: number;
 
-    @Column({ nullable: false, unique: true })
+    @Column({ name: 'isbn', nullable: false, unique: true })
     isbn: string;
 
-    @Column({ nullable: false })
+    @Column({ name: 'publication_date', nullable: false })
     publicationDate: Date;
 
     @ManyToOne(() => Category, { nullable: false })
+    @JoinColumn({ name: 'category_id', referencedColumnName: 'id' })
     category: Category;
 
     @ManyToOne(() => Author, { nullable: false })
+    @JoinColumn({ name: 'author_id', referencedColumnName: 'id' })
     author: Author;
 }

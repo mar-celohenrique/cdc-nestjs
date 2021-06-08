@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
-@Entity()
+@Entity('coupon')
 export class Coupon {
     @PrimaryGeneratedColumn({ name: 'id' })
     id: number;
@@ -14,7 +14,7 @@ export class Coupon {
     @Column({ name: 'expiration_date' })
     expirationDate: Date;
 
-    public isValid(): boolean {
+    isValid(): boolean {
         return this.expirationDate.getTime() > new Date().getTime();
     }
 }
